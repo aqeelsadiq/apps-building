@@ -1,0 +1,31 @@
+name: Build Docker image of node js app
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./my_node_app
+        load: true
+        tags: nodejs-app:latest
+
+    - name: Verify Docker image
+      run: |
+        docker images nodejs-app:latest
