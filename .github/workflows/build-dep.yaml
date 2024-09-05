@@ -28,49 +28,61 @@ jobs:
         case "${{ github.event.inputs.app }}" in
           python)
             docker build -t python-app:latest ./my_python_app
+            docker save python-app:latest | gzip > python-app.tar.gz
             ;;
           java)
             docker build -t java-app:latest ./my_java_app
+            docker save java-app:latest | gzip > java-app.tar.gz
             ;;
           nodejs)
             docker build -t nodejs-app:latest ./my_node_app
+            docker save nodejs-app:latest | gzip > nodejs-app.tar.gz
             ;;
           *)
             echo "Invalid application selected"
             exit 1
             ;;
-        esac
-
-    - name: Verify Docker image
-      run: |
-        docker images ${{ github.event.inputs.app }}-app:latest
+    - name: Upload Docker image as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ github.event.inputs.app }}-image
+        path: ${{ github.event.inputs.app }}-app.tar.gz
 
   deploy:
-    runs-on: ubuntu-latest 
+    runs-on: self-hosted
     needs: build
     steps:
-    - name: Pull the repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    # - name: Stop running container
-    #   run: |
-    #     docker stop ${{ github.event.inputs.app }}-container || true
-    #     docker rm ${{ github.event.inputs.app }}-container || true
+    - name: Download Docker image artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ github.event.inputs.app }}-image
 
-    - name: Run the Docker container
+    - name: Load Docker image
+      run: |
+        gunzip -c ${{ github.event.inputs.app }}-app.tar.gz | docker load
+
+    - name: Stop running container
+      run: |
+        docker stop ${{ github.event.inputs.app }}-container || true
+        docker rm ${{ github.event.inputs.app }}-container || true
+
+    - name: Run Docker container
       run: |
         case "${{ github.event.inputs.app }}" in
           python)
-            docker run -d --name python-container -p 8080:5000 python-app:latest
+            docker run -d --name python-container -p 80:5000 python-app:latest
             ;;
           java)
-            docker run -d --name java-container -p 80:3000 java-app:latest
+            docker run -d --name java-container -p 80:8080 java-app:latest
             ;;
           nodejs)
-            docker run -d --name nodejs-container -p 8081:8081 nodejs-app:latest
+            docker run -d --name nodejs-container -p 80:3000 nodejs-app:latest
             ;;
           *)
             echo "Invalid application selected"
             exit 1
             ;;
-        esac
+        ecac
