@@ -2,16 +2,16 @@ name: Build Docker Images Manually and separately
 
 on:
   workflow_dispatch:
-    inputs:
-      app:
-        description: 'Select the application to build'
-        required: true
-        default: 'nodejs'
-        type: choice
-        options:
-          - python
-          - java
-          - nodejs
+    # inputs:
+    #   app:
+    #     description: 'Select the application to build'
+    #     required: true
+    #     default: 'nodejs'
+    #     type: choice
+    #     options:
+    #       - python
+    #       - java
+    #       - nodejs
 jobs:
 
   build_python_app:
