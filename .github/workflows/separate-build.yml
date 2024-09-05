@@ -63,7 +63,7 @@ jobs:
 
       - name: Build Node.js Docker image
         run: |
-          cd my_nodejs_app  
+          cd my_node_app  
           docker build -t nodejs-app-image .
 
       - name: List Docker images
