@@ -1,0 +1,70 @@
+name: Build Docker Images Manually and separately
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'Select the application to build'
+        required: true
+        default: 'nodejs'
+        type: choice
+        options:
+          - python
+          - java
+          - nodejs
+jobs:
+
+  build_python_app:
+    name: Build Python App Docker Image
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Python Docker image
+        run: |
+          cd my_python_app 
+          docker build -t python-app-image .  
+          
+      - name: List Docker images
+        run: docker images
+
+
+  build_java_app:
+    name: Build Java App Docker Image
+    runs-on: ubuntu-latest  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Java Docker image
+        run: |
+          cd my_java_app  
+          docker build -t java-app-image .  
+
+      - name: List Docker images
+        run: docker images
+
+  build_nodejs_app:
+    name: Build Node.js App Docker Image
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Node.js Docker image
+        run: |
+          cd my_nodejs_app  
+          docker build -t nodejs-app-image .
+
+      - name: List Docker images
+        run: docker images
