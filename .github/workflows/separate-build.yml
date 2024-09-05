@@ -27,6 +27,7 @@ jobs:
   check-docker-images:
     runs-on: ubuntu-latest
     steps:
+      - name: print variable
         run: |
           NAME=aqeel
           echo $NAME
