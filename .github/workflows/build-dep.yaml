@@ -1,9 +1,17 @@
 name: Build and Deploy Docker Images
 
 on:
-  push:
-    branches:
-      - main  # Trigger the workflow on push to the main branch
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'Select the application to build'
+        required: true
+        default: 'nodejs'
+        type: choice
+        options:
+          - python
+          - java
+          - nodejs
 
 jobs:
   build:
