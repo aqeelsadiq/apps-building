@@ -19,13 +19,13 @@ jobs:
       run: |
         case "${{ github.event.inputs.app }}" in
           python)
-          ./my_python_app
+            docker build -t python-app:latest ./my_python_app
             ;;
           java)
-         ./my_java_app
+            docker build -t java-app:latest ./my_java_app
             ;;
           nodejs)
-          ./my_node_app
+            docker build -t nodejs-app:latest ./my_node_app
             ;;
           *)
             echo "Invalid application selected"
@@ -33,30 +33,30 @@ jobs:
             ;;
         esac
     # Python App Build and Run
-    - name: Build Python Docker image
-      run: |
-        cd ./my_python_app
-        docker build -t python-app-image .
+    # - name: Build Python Docker image
+    #   run: |
+    #     cd ./my_python_app
+    #     docker build -t python-app-image .
 
     - name: Run Python Docker container
       run: |
         docker run -d -p 5000:5000 --name python-app-container python-app-image
 
     # Java App Build and Run
-    - name: Build Java Docker image
-      run: |
-        cd ../my_java_app
-        docker build -t java-app-image .
+    # - name: Build Java Docker image
+    #   run: |
+    #     cd ./my_java_app
+    #     docker build -t java-app-image .
 
     - name: Run Java Docker container
       run: |
         docker run -d -p 8080:8080 --name java-app-container java-app-image
 
     # Node.js App Build and Run
-    - name: Build Node.js Docker image
-      run: |
-        cd ../my_nodejs_app
-        docker build -t nodejs-app-image .
+    # - name: Build Node.js Docker image
+    #   run: |
+    #     cd ./my_nodejs_app
+    #     docker build -t nodejs-app-image .
 
     - name: Run Node.js Docker container
       run: |
