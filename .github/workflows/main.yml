@@ -1,6 +1,5 @@
 name: Build Docker Image
 
-# This workflow will be triggered manually
 on:
   workflow_dispatch:
     inputs:
@@ -16,8 +15,8 @@ on:
 
 jobs:
   build:
-    #runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -46,6 +45,6 @@ jobs:
     - name: Verify Docker image
       run: |
         docker images ${{ github.event.inputs.app }}-app:latest
-    - name: Run Docker container
-      run: |
-        docker run -d --name ${{ github.event.inputs.app }}-container -p 8080:3000 ${{ github.event.inputs.app }}-app:latest
+    # - name: Run Docker container
+    #   run: |
+    #     docker run -d --name ${{ github.event.inputs.app }}-container -p 8080:3000 ${{ github.event.inputs.app }}-app:latest
