@@ -25,7 +25,7 @@ public class Main {
 
         // Start the server
         server.setExecutor(null); // creates a default executor
-        System.out.println("Server is running on http://localhost:3000/");
+        System.out.println("Server is running on http://localhost:8080/");
         server.start();
     }
 }

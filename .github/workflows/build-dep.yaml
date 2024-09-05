@@ -1,89 +1,67 @@
-# name: Build and Deploy Docker Image
+name: Build and Deploy Docker Images
 
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       app:
-#         description: 'Select the application to build'
-#         required: true
-#         default: 'nodejs'
-#         type: choice
-#         options:
-#           - python
-#           - java
-#           - nodejs
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v3
+jobs:
+  build:
+    runs-on: self-hosted  # Assuming you're using a self-hosted runner on EC2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-#     - name: Set up Docker Buildx
-#       uses: docker/setup-buildx-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-#     - name: Build Docker image
-#       run: |
-#         case "${{ github.event.inputs.app }}" in
-#           python)
-#             docker build -t python-app:latest ./my_python_app
-#             docker save python-app:latest | gzip > python-app.tar.gz
-#             ;;
-#           java)
-#             docker build -t java-app:latest ./my_java_app
-#             docker save java-app:latest | gzip > java-app.tar.gz
-#             ;;
-#           nodejs)
-#             docker build -t nodejs-app:latest ./my_node_app
-#             docker save nodejs-app:latest | gzip > nodejs-app.tar.gz
-#             ;;
-#           *)
-#             echo "Invalid application selected"
-#             exit 1
-#             ;;
-#         esac
-#     - name: Upload Docker image as artifact
-#       uses: actions/upload-artifact@v3
-#       with:
-#         name: ${{ github.event.inputs.app }}-image
-#         path: ${{ github.event.inputs.app }}-app.tar.gz
+    - name: Build Docker image
+      run: |
+        case "${{ github.event.inputs.app }}" in
+          python)
+          ./my_python_app
+            ;;
+          java)
+         ./my_java_app
+            ;;
+          nodejs)
+          ./my_node_app
+            ;;
+          *)
+            echo "Invalid application selected"
+            exit 1
+            ;;
+        esac
+    # Python App Build and Run
+    - name: Build Python Docker image
+      run: |
+        cd ./my_python_app
+        docker build -t python-app-image .
 
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: build
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v3
+    - name: Run Python Docker container
+      run: |
+        docker run -d -p 5000:5000 --name python-app-container python-app-image
 
-#     - name: Download Docker image artifact
-#       uses: actions/download-artifact@v3
-#       with:
-#         name: ${{ github.event.inputs.app }}-image
+    # Java App Build and Run
+    - name: Build Java Docker image
+      run: |
+        cd ../my_java_app
+        docker build -t java-app-image .
 
-#     - name: Load Docker image
-#       run: |
-#         gunzip -c ${{ github.event.inputs.app }}-app.tar.gz | docker load
+    - name: Run Java Docker container
+      run: |
+        docker run -d -p 8080:8080 --name java-app-container java-app-image
 
-#     - name: Stop running container
-#       run: |
-#         docker stop ${{ github.event.inputs.app }}-container || true
-#         docker rm ${{ github.event.inputs.app }}-container || true
+    # Node.js App Build and Run
+    - name: Build Node.js Docker image
+      run: |
+        cd ../my_nodejs_app
+        docker build -t nodejs-app-image .
 
-#     - name: Run Docker container
-#       run: |
-#         case "${{ github.event.inputs.app }}" in
-#           python)
-#             docker run -d --name python-container -p 80:5000 python-app:latest
-#             ;;
-#           java)
-#             docker run -d --name java-container -p 80:8080 java-app:latest
-#             ;;
-#           nodejs)
-#             docker run -d --name nodejs-container -p 80:3000 nodejs-app:latest
-#             ;;
-#           *)
-#             echo "Invalid application selected"
-#             exit 1
-#             ;;
-#         ecac
+    - name: Run Node.js Docker container
+      run: |
+        docker run -d -p 3000:3000 --name nodejs-app-container nodejs-app-image
+
+    # List all running containers
+    - name: List running containers
+      run: docker ps
