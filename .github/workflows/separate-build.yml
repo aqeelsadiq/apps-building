@@ -27,8 +27,9 @@ jobs:
   check-docker-images:
     runs-on: ubuntu-latest
     steps:
-        run: NAME:aqeel;
-
+        run: |
+          NAME=aqeel
+          echo $NAME
 
   build_python_app:     
     # if: ${{ github.event.inputs.app == 'python' }}
@@ -53,7 +54,7 @@ jobs:
       #     done   
           
       - name: List Docker images
-        run: echo ${NAME}
+        run: echo ${{NAME}}
 
 
   build_java_app:
