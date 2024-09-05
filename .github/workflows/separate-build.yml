@@ -6,21 +6,21 @@ on:
       - main
 
   workflow_dispatch:
-    inputs:
-      app:
-        description: 'Select the application to build'
-        required: true
-        default: 'nodejs'
-        type: choice
-        options:
-          - python
-          - java
-          - nodejs
-      num_images:
-        description: "Enter the number of images to create"
-        required: true
-        default: 1
-        type: number
+    # inputs:
+    #   app:
+    #     description: 'Select the application to build'
+    #     required: true
+    #     default: 'nodejs'
+    #     type: choice
+    #     options:
+    #       - python
+    #       - java
+    #       - nodejs
+      # num_images:
+      #   description: "Enter the number of images to create"
+      #   required: true
+      #   default: 1
+      #   type: number
 
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
       - name: Build Python docker images with versions
         run: |
           cd my_python_app
-          for i in $(seq 1 ${{ github.event.inputs.num_images }}); do
+          for i in {1..5}; do
           docker build -t python-app-image:v$i . 
           done   
           
