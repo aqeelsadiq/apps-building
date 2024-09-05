@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted  # Assuming you're using a self-hosted runner on EC2
+    runs-on: ubuntu-latest  # Assuming you're using a self-hosted runner on EC2
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
