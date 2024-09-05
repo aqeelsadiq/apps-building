@@ -54,7 +54,7 @@ jobs:
       #     done   
           
       - name: List Docker images
-        run: echo ${{NAME}}
+        run: echo $NAME
 
 
   build_java_app:
