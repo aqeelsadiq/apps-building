@@ -48,7 +48,7 @@ jobs:
 
     - name: Run Python Docker container
       run: |
-        docker run -d -p 5000:5000 --name python-app-container python-app-image
+        docker run -d -p 5000:5000 --name python-app-container python-app
 
     # Java App Build and Run
     # - name: Build Java Docker image
@@ -58,7 +58,7 @@ jobs:
 
     - name: Run Java Docker container
       run: |
-        docker run -d -p 8080:8080 --name java-app-container java-app-image
+        docker run -d -p 8080:8080 --name java-app-container java-app
 
     # Node.js App Build and Run
     # - name: Build Node.js Docker image
@@ -68,7 +68,7 @@ jobs:
 
     - name: Run Node.js Docker container
       run: |
-        docker run -d -p 3000:3000 --name nodejs-app-container nodejs-app-image
+        docker run -d -p 3000:3000 --name nodejs-app-container nodejs-app
 
     # List all running containers
     - name: List running containers
