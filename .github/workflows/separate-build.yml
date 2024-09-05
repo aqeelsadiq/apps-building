@@ -30,7 +30,6 @@ jobs:
       - name: List Docker images
         run: docker images
 
-  steps:
   build_python_app:     
     if: ${{ github.event.inputs.app == 'python' }}
     name: Build Python App Docker Image
