@@ -1,75 +1,75 @@
-name: Build and Deploy Docker Images
+# name: Build and Deploy Docker Images
 
-on:
-  workflow_dispatch:
-    inputs:
-      app:
-        description: 'Select the application to build'
-        required: true
-        default: 'nodejs'
-        type: choice
-        options:
-          - python
-          - java
-          - nodejs
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       app:
+#         description: 'Select the application to build'
+#         required: true
+#         default: 'nodejs'
+#         type: choice
+#         options:
+#           - python
+#           - java
+#           - nodejs
 
-jobs:
-  build:
-    runs-on: ubuntu-latest  # Assuming you're using a self-hosted runner on EC2
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest  # Assuming you're using a self-hosted runner on EC2
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+#     - name: Set up Docker Buildx
+#       uses: docker/setup-buildx-action@v2
 
-    - name: Build Docker image
-      run: |
-        case "${{ github.event.inputs.app }}" in
-          python)
-            docker build -t python-app:latest ./my_python_app
-            ;;
-          java)
-            docker build -t java-app:latest ./my_java_app
-            ;;
-          nodejs)
-            docker build -t nodejs-app:latest ./my_node_app
-            ;;
-          *)
-            echo "Invalid application selected"
-            exit 1
-            ;;
-        esac
-    # Python App Build and Run
-    # - name: Build Python Docker image
-    #   run: |
-    #     cd ./my_python_app
-    #     docker build -t python-app-image .
+#     - name: Build Docker image
+#       run: |
+#         case "${{ github.event.inputs.app }}" in
+#           python)
+#             docker build -t python-app:latest ./my_python_app
+#             ;;
+#           java)
+#             docker build -t java-app:latest ./my_java_app
+#             ;;
+#           nodejs)
+#             docker build -t nodejs-app:latest ./my_node_app
+#             ;;
+#           *)
+#             echo "Invalid application selected"
+#             exit 1
+#             ;;
+#         esac
+#     # Python App Build and Run
+#     # - name: Build Python Docker image
+#     #   run: |
+#     #     cd ./my_python_app
+#     #     docker build -t python-app-image .
 
-    - name: Run Python Docker container
-      run: |
-        docker run -d -p 5000:5000 --name python-app-container python-app
+#     - name: Run Python Docker container
+#       run: |
+#         docker run -d -p 5000:5000 --name python-app-container python-app
 
-    # Java App Build and Run
-    # - name: Build Java Docker image
-    #   run: |
-    #     cd ./my_java_app
-    #     docker build -t java-app-image .
+#     # Java App Build and Run
+#     # - name: Build Java Docker image
+#     #   run: |
+#     #     cd ./my_java_app
+#     #     docker build -t java-app-image .
 
-    - name: Run Java Docker container
-      run: |
-        docker run -d -p 8080:8080 --name java-app-container java-app
+#     - name: Run Java Docker container
+#       run: |
+#         docker run -d -p 8080:8080 --name java-app-container java-app
 
-    # Node.js App Build and Run
-    # - name: Build Node.js Docker image
-    #   run: |
-    #     cd ./my_nodejs_app
-    #     docker build -t nodejs-app-image .
+#     # Node.js App Build and Run
+#     # - name: Build Node.js Docker image
+#     #   run: |
+#     #     cd ./my_nodejs_app
+#     #     docker build -t nodejs-app-image .
 
-    - name: Run Node.js Docker container
-      run: |
-        docker run -d -p 3000:3000 --name nodejs-app-container nodejs-app
+#     - name: Run Node.js Docker container
+#       run: |
+#         docker run -d -p 3000:3000 --name nodejs-app-container nodejs-app
 
-    # List all running containers
-    - name: List running containers
-      run: docker ps
+#     # List all running containers
+#     - name: List running containers
+#       run: docker ps
