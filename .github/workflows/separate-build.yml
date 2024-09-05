@@ -1,6 +1,10 @@
 name: Build Docker Images Manually and separately
 
 on:
+  push:
+    Branches:
+      - main
+
   workflow_dispatch:
     inputs:
       app:
