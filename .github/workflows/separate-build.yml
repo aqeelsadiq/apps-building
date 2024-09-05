@@ -27,11 +27,7 @@ jobs:
   check-docker-images:
     runs-on: ubuntu-latest
     steps:
-      - name: List Docker images
-        run: |
-          docker images
-          docker image prune --all --force
-          NAME:aqeel;
+        run: NAME:aqeel;
 
 
   build_python_app:     
@@ -57,9 +53,7 @@ jobs:
       #     done   
           
       - name: List Docker images
-        run: |
-          docker images
-          echo ${NAME}
+        run: echo ${NAME}
 
 
   build_java_app:
