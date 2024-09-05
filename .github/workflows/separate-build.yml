@@ -33,7 +33,7 @@ jobs:
           echo $NAME
 
   build_python_app:     
-    # if: ${{ github.event.inputs.app == 'python' }}
+    if: ${{ github.event.inputs.app == 'python' }}
     name: Build Python App Docker Image
     runs-on: ubuntu-latest 
     steps:
@@ -54,12 +54,12 @@ jobs:
       #     docker build -t python-app-image:v$i . 
       #     done   
           
-      - name: List Docker images
-        run: echo ${{NAME}}
+      # - name: List Docker images
+      #   run: echo ${{NAME}}
 
 
   build_java_app:
-    # if: ${{ github.event.inputs.app == 'java' }}
+    if: ${{ github.event.inputs.app == 'java' }}
     name: Build Java App Docker Image
     runs-on: ubuntu-latest  
     steps:
