@@ -2,19 +2,20 @@ name: Build Docker Images Manually and separately
 
 on:
   workflow_dispatch:
-    # inputs:
-    #   app:
-    #     description: 'Select the application to build'
-    #     required: true
-    #     default: 'nodejs'
-    #     type: choice
-    #     options:
-    #       - python
-    #       - java
-    #       - nodejs
+    inputs:
+      app:
+        description: 'Select the application to build'
+        required: true
+        default: 'nodejs'
+        type: choice
+        options:
+          - python
+          - java
+          - nodejs
 jobs:
 
-  build_python_app:
+  build_python_app:     
+    if: ${{ github.event.inputs.app == 'python' }}
     name: Build Python App Docker Image
     runs-on: ubuntu-latest 
     steps:
@@ -34,6 +35,7 @@ jobs:
 
 
   build_java_app:
+    if: ${{ github.event.inputs.app == 'java' }}
     name: Build Java App Docker Image
     runs-on: ubuntu-latest  
     steps:
@@ -52,6 +54,7 @@ jobs:
         run: docker images
 
   build_nodejs_app:
+    if: ${{ github.event.inputs.app == 'nodejs' }}
     name: Build Node.js App Docker Image
     runs-on: ubuntu-latest 
     steps:
