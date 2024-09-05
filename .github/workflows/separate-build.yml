@@ -28,10 +28,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List Docker images
-        run: docker images
+        run: |
+          docker images
+          docker image prune --all --force
+
 
   build_python_app:     
-    if: ${{ github.event.inputs.app == 'python' }}
+    # if: ${{ github.event.inputs.app == 'python' }}
     name: Build Python App Docker Image
     runs-on: ubuntu-latest 
     steps:
