@@ -2,7 +2,7 @@ name: Build Docker Images Manually and separately
 
 on:
   push:
-    Branches: 
+    branches: 
       - main
 
   workflow_dispatch:
@@ -27,8 +27,7 @@ jobs:
   check-docker-images:
     runs-on: ubuntu-latest
     steps:
-      - name: print variable
-        run: |
+       - run: |
           NAME=aqeel
 
   build_python_app:     
