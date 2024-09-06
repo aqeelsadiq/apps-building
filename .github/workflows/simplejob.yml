@@ -13,4 +13,11 @@ jobs:
      - name: print variable
        run: |
         name=aqeel
-        echo $name
+        # echo $name
+
+
+  var_job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print variable here
+        run: echo $name
