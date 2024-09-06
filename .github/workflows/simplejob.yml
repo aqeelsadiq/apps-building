@@ -18,7 +18,7 @@ jobs:
           # echo "name=$value" >> "$GITHUB_OUTPUT"
       - name: print variable
         run: |
-          echo "$vlaue"
+          echo $vlaue
 
   # var_job2:
   #   runs-on: ubuntu-latest
