@@ -10,14 +10,44 @@ on:
 
 jobs:
   var_job:
-   runs-on: ubuntu-latest
-   steps:
-     - name: enter variable
-       run: name=aqeel
+    runs-on: ubuntu-latest
+    outputs:
+      new-key: ${{ steps.set-value.outputs.new-key }}
+    steps:
+      - id: set-value
+        name: Generate a value
+        run: |
+          value=aqeel
+          echo "new-key=$value" >> "$GITHUB_OUTPUT"
+
 
   var_job2:
     runs-on: ubuntu-latest
-    needs: [var_job]
+    needs: var_job
     steps:
-      - name: print variable here
-        run: echo $NAME
+      - name: Access it
+        run: |
+          echo "the secret number is ${{ needs.var_job.outputs.new-key }}"
+
+
+
+
+
+
+
+
+
+
+# jobs:
+#   var_job:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: enter variable
+#        run: name=aqeel
+
+#   var_job2:
+#     runs-on: ubuntu-latest
+#     needs: [var_job]
+#     steps:
+#       - name: print variable here
+#         run: echo $NAME
