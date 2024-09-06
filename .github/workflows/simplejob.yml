@@ -15,10 +15,10 @@ jobs:
       - name: enter value
         run: |
           value=aqeel
-          # echo "name=$value" >> "$GITHUB_OUTPUT"
+          echo "name=$value" >> "$GITHUB_ENV"
       - name: print variable
         run: |
-          echo $vlaue
+          echo $name
 
   # var_job2:
   #   runs-on: ubuntu-latest
