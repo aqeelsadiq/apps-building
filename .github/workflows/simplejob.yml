@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: show variable
-        run: echo ${{ vars.MY_NAME }}
+        run: echo ${{ vars.YOUR_NAME }}
 
 
 
