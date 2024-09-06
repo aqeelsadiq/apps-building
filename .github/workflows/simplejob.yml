@@ -10,14 +10,12 @@ jobs:
   var_job:
    runs-on: ubuntu-latest
    steps:
-     - name: print variable
+     - name: enter variable
        run: |
         name=aqeel
-        # echo $name
-
 
   var_job2:
     runs-on: ubuntu-latest
     steps:
       - name: print variable here
-        run: echo $name
+        run: echo ${{ name }}
