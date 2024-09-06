@@ -8,17 +8,45 @@ on:
 jobs:
   var_job:
     runs-on: ubuntu-latest
+    steps:
+      - name: show variable
+        run: echo ${{ vars.MY_NAME }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# jobs:
+#   var_job:
+#     runs-on: ubuntu-latest
     # outputs:
     #   name: ${{ steps.set-value.outputs.name }}
-    steps:
+    # steps:
       # - id: set-value
-      - name: enter value
-        run: |
-          value=aqeel
-          echo "name=$value" >> "$GITHUB_ENV"
-      - name: print variable
-        run: |
-          echo $name
+      # - name: enter value
+      #   run: |
+      #     value=aqeel
+      #     echo "name=$value" >> "$GITHUB_ENV"
+      # - name: print variable
+      #   run: |
+      #     echo $name
 
   # var_job2:
   #   runs-on: ubuntu-latest
