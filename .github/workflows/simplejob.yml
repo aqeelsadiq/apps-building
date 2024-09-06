@@ -6,15 +6,19 @@ on:
       - main
 
 
+
+
 jobs:
   var_job:
    runs-on: ubuntu-latest
+   env:
+     NAME: aqeel
    steps:
      - name: enter variable
-       run: name=aqeel
+       run: echo "$NAME"
 
-  var_job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: print variable here
-        run: echo $name
+  # var_job2:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: print variable here
+  #       run: echo $name
