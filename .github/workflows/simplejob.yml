@@ -1,4 +1,4 @@
-name: print variable
+name: print variable from one job to another job
 
 on:
   push: 
@@ -12,22 +12,22 @@ jobs:
   var_job:
     runs-on: ubuntu-latest
     outputs:
-      new-key: ${{ steps.set-value.outputs.new-key }}
+      name: ${{ steps.set-value.outputs.name }}
     steps:
       - id: set-value
         name: Generate a value
         run: |
           value=aqeel
-          echo "new-key=$value" >> "$GITHUB_OUTPUT"
+          echo "name=$value" >> "$GITHUB_OUTPUT"
 
 
   var_job2:
     runs-on: ubuntu-latest
     needs: var_job
     steps:
-      - name: Access it
+      - name: print variable
         run: |
-          echo "the secret number is ${{ needs.var_job.outputs.new-key }}"
+          echo "${{ needs.var_job.outputs.name }}"
 
 
 
