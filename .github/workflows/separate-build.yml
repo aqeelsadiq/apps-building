@@ -1,95 +1,95 @@
-name: Build Docker Images Manually and separately
+# name: Build Docker Images Manually and separately
 
-on:
-  push:
-    branches: 
-      - main
+# on:
+#   push:
+#     branches: 
+#       - main
 
-  workflow_dispatch:
-    # inputs:
-    #   app:
-    #     description: 'Select the application to build'
-    #     required: true
-    #     default: 'nodejs'
-    #     type: choice
-    #     options:
-    #       - python
-    #       - java
-    #       - nodejs
-      # num_images:
-      #   description: "Enter the number of images to create"
-      #   required: true
-      #   default: 1
-      #   type: number
+#   workflow_dispatch:
+#     # inputs:
+#     #   app:
+#     #     description: 'Select the application to build'
+#     #     required: true
+#     #     default: 'nodejs'
+#     #     type: choice
+#     #     options:
+#     #       - python
+#     #       - java
+#     #       - nodejs
+#       # num_images:
+#       #   description: "Enter the number of images to create"
+#       #   required: true
+#       #   default: 1
+#       #   type: number
 
 
-jobs:
-  check-docker-images:
-    runs-on: ubuntu-latest
-    steps:
-       - run: |
-          NAME=aqeel
+# jobs:
+#   check-docker-images:
+#     runs-on: ubuntu-latest
+#     steps:
+#        - run: |
+#           NAME=aqeel
 
-  build_python_app:     
-    # if: ${{ github.event.inputs.app == 'python' }}
-    name: Build Python App Docker Image
-    runs-on: ubuntu-latest 
-    steps:
-      # - name: Checkout repository
-      #   uses: actions/checkout@v3
+#   build_python_app:     
+#     # if: ${{ github.event.inputs.app == 'python' }}
+#     name: Build Python App Docker Image
+#     runs-on: ubuntu-latest 
+#     steps:
+#       # - name: Checkout repository
+#       #   uses: actions/checkout@v3
         
-      # - name: Set up Docker
-      #   uses: docker/setup-buildx-action@v2
+#       # - name: Set up Docker
+#       #   uses: docker/setup-buildx-action@v2
 
-      # - name: Build Python Docker image
-      #   run: |
-      #     cd my_python_app 
-      #     docker build -t python-app-image . 
-      # - name: Build Python docker images with versions
-      #   run: |
-      #     cd my_python_app
-      #     for i in {1..5}; do
-      #     docker build -t python-app-image:v$i . 
-      #     done   
+#       # - name: Build Python Docker image
+#       #   run: |
+#       #     cd my_python_app 
+#       #     docker build -t python-app-image . 
+#       # - name: Build Python docker images with versions
+#       #   run: |
+#       #     cd my_python_app
+#       #     for i in {1..5}; do
+#       #     docker build -t python-app-image:v$i . 
+#       #     done   
           
-      - name: List Docker images
-        run: echo $NAME
+#       - name: List Docker images
+#         run: echo $NAME
 
 
-  build_java_app:
-    if: ${{ github.event.inputs.app == 'java' }}
-    name: Build Java App Docker Image
-    runs-on: ubuntu-latest  
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#   build_java_app:
+#     if: ${{ github.event.inputs.app == 'java' }}
+#     name: Build Java App Docker Image
+#     runs-on: ubuntu-latest  
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
         
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+#       - name: Set up Docker
+#         uses: docker/setup-buildx-action@v2
 
-      - name: Build Java Docker image
-        run: |
-          cd my_java_app  
-          docker build -t java-app-image .  
+#       - name: Build Java Docker image
+#         run: |
+#           cd my_java_app  
+#           docker build -t java-app-image .  
 
-      - name: List Docker images
-        run: docker images
+#       - name: List Docker images
+#         run: docker images
 
-  build_nodejs_app:
-    if: ${{ github.event.inputs.app == 'nodejs' }}
-    name: Build Node.js App Docker Image
-    runs-on: ubuntu-latest 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#   build_nodejs_app:
+#     if: ${{ github.event.inputs.app == 'nodejs' }}
+#     name: Build Node.js App Docker Image
+#     runs-on: ubuntu-latest 
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+#       - name: Set up Docker
+#         uses: docker/setup-buildx-action@v2
 
-      - name: Build Node.js Docker image
-        run: |
-          cd my_node_app  
-          docker build -t nodejs-app-image .
+#       - name: Build Node.js Docker image
+#         run: |
+#           cd my_node_app  
+#           docker build -t nodejs-app-image .
 
-      - name: List Docker images
-        run: docker images
+#       - name: List Docker images
+#         run: docker images

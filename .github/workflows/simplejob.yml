@@ -1,0 +1,16 @@
+name: print variable
+
+on:
+  push: 
+    branches:
+      - main
+
+
+jobs:
+  var_job:
+   runs-on: ubuntu-latest
+   steps:
+     - name: print variable
+       run: |
+        name=aqeel
+        echo $name
