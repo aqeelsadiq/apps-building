@@ -13,9 +13,9 @@ jobs:
    runs-on: ubuntu-latest
    env:
      NAME: aqeel
-  #  steps:
-  #    - name: enter variable
-  #      run: echo "$NAME"
+   steps:
+     - name: enter variable
+       run: echo "$NAME"
 
   var_job2:
     runs-on: ubuntu-latest
