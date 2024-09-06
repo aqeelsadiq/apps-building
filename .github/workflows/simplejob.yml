@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-
-
-
 jobs:
   var_job:
     runs-on: ubuntu-latest
@@ -15,19 +12,21 @@ jobs:
       name: ${{ steps.set-value.outputs.name }}
     steps:
       - id: set-value
-        name: Generate a value
+        name: enter value
         run: |
           value=aqeel
           echo "name=$value" >> "$GITHUB_OUTPUT"
-
-
-  var_job2:
-    runs-on: ubuntu-latest
-    needs: var_job
-    steps:
-      - name: print variable
+      - name: Access it
         run: |
-          echo "${{ needs.var_job.outputs.name }}"
+          echo "${{ steps.sets-value.outputs.name }}"
+
+  # var_job2:
+  #   runs-on: ubuntu-latest
+  #   needs: var_job
+  #   steps:
+  #     - name: print variable
+  #       run: |
+  #         echo "${{ needs.var_job.outputs.name }}"
 
 
 
