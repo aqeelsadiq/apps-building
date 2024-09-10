@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - python
-          - Java
+          - java
           - node
 
 jobs:
