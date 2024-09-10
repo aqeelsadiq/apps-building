@@ -1,4 +1,4 @@
-name: Buil the selected application
+name: build apps in one job using if and env
 
 on:
   workflow_dispatch:

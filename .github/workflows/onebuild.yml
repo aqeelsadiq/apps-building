@@ -1,4 +1,4 @@
-name: one build file
+name: build apps in one job and one step
 
 on:
   workflow_dispatch:
