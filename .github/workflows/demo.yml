@@ -8,9 +8,9 @@ on:
         required: true
         type: choice
         options:
-            - 'python'
-            - 'java'
-            - 'node'
+            - python
+            - java
+            - node
 jobs:
   Build:
     runs-on: ubuntu-latest
