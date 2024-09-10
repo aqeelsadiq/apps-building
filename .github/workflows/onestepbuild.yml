@@ -22,8 +22,6 @@ jobs:
       JAVA_IMAGE: java-image
       NODE_DIR: node
       NODE_IMAGE: node-image
-      APP_DIR: "my_${{ github.event.inputs.app }}_app"
-      APP_IMAGE: "my-${{ github.event.inputs.app }}-image"
 
     steps:
       - name: Checkout the code
@@ -34,11 +32,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          dir="${{ env.APP_DIR }}"
-          image="${{ env.APP_IMAGE }}"
-          echo "Build the Docker image for ${dir} and name is ${image}"
-          cd $dir
-          docker build -t $image .
+          cd my_${{ env.PY_DIR }}_app
+          docker build -t ${{ env.PY_IMAGE }} .
 
       - name: Show Docker images
         run: docker images
