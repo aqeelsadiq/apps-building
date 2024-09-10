@@ -7,6 +7,7 @@ on:
         description: 'select the applicaion'
         required: true
         # default: 'python'
+        type: choice
         options:
           - python
           - Java
@@ -35,25 +36,25 @@ jobs:
         run: docker images
 
 
-      - name: build the docker image
-        env:
-          app: ${{ github.event.inputs.app }}
-        run: |
-          cd my_node_app
-          for i in ${app[1]}; do
-          docker build -t $i .
-          done
-      - name: check the docker image
-        run: docker images
+      # - name: build the docker imag
+      #   env:
+      #     app: ${{ github.event.inputs.app }}
+      #   run: |
+      #     cd my_node_app
+      #     for i in ${app[1]}; do
+      #     docker build -t $i .
+      #     done
+      # - name: check the docker image
+      #   run: docker images
 
       
-      - name: build the docker image
-        env:
-          app: ${{ github.event.inputs.app }}
-        run: |
-          cd my_python_app
-          for i in ${app[2]}; do
-          docker build -t $i .
-          done
-      - name: check the docker image
-        run: docker images
+      # - name: build the docker image
+      #   env:
+      #     app: ${{ github.event.inputs.app }}
+      #   run: |
+      #     cd my_python_app
+      #     for i in ${app[2]}; do
+      #     docker build -t $i .
+      #     done
+      # - name: check the docker image
+      #   run: docker images
