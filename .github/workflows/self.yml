@@ -1,4 +1,4 @@
-name: build and deploy aaplication on aws ec2
+name: build and deploy aaplication on aws ec2 changes
 
 on:
   push:
