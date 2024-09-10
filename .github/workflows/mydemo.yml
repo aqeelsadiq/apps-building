@@ -1,4 +1,4 @@
-name: Build Selected Application
+name: BUild only the selected application 
 
 on:
   workflow_dispatch:
@@ -22,9 +22,8 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build the Docker image
+      - name: Build Docker image
         run: |
-          # Define directories and image names
           if [ "${{ github.event.inputs.app }}" = "python" ]; then
             dir="my_python_app"
             image="my-python-image"
@@ -39,11 +38,9 @@ jobs:
             exit 1
           fi
 
-          # Build the Docker image for the selected application
-          echo "Building Docker image for ${{ github.event.inputs.app }}..."
+          echo "${{ github.event.inputs.app }}"
           cd $dir
           docker build -t $image .
-          cd ..
 
-      - name: Check the Docker images
+      - name: Check the Docker image
         run: docker images
