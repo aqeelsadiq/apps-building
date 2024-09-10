@@ -16,8 +16,8 @@ jobs:
     - name: Build Docker image
       run: |
         cd my_node_app
-        docker build -t aqeelsadiq/myjavaimage .
-    - name: Push imaage to docker hub
+        docker build -t aqeelsadiq/mynodeimage .
+    - name: Push image to docker hub
       run: docker push aqeelsadiq/mynodeimage:latest
 
   Deploy:
