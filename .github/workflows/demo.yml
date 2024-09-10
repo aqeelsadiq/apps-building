@@ -1,45 +1,49 @@
-name: build app 
+# name: build app 
 
-on:
-  workflow_dispatch:
-    inputs:
-      myapp:
-        description: 'select application'
-        required: true
-        type: choice
-        options:
-            - python
-            - java
-            - node
-jobs:
-  Build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: docker buildx
-        uses: docker/setup-buildx-action@v2
-      - name:  build docker images
-        run: |
-          if [ "${{ github.event.inputs.myapp }}" = "python" ]; then 
-            dir= "my_python_app"
-            image= "mypythonimage"
-          elif [ "${{ github.event.inputs.myapp }}" = "java" ]; then
-            dir= "my_java_app"
-            image= "myjavaimage"
-          elif [ "${{github.event.inputs.myapp }}" = "node" ]; then
-            dir= "my_node_app"
-            mage= "mynodeimage"
-          else 
-            echo "option not selected ${{ github.event.inputs.myapp }}"
-            exit 1
-          fi  
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       myapp:
+#         description: 'select application'
+#         required: true
+#         type: choice
+#         options:
+#             - python
+#             - java
+#             - node
+# jobs:
+#   Build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+
+#       - name: docker buildx
+#         uses: docker/setup-buildx-action@v2
+
+
+#       - name:  build docker images
+#         run: |
+#           if [ "${{ github.event.inputs.myapp }}" = "python" ]; then 
+#             dir= "my_python_app"
+#             image= "mypythonimage"
+#           elif [ "${{ github.event.inputs.myapp }}" = "java" ]; then
+#             dir= "my_java_app"
+#             image= "myjavaimage"
+#           elif [ "${{github.event.inputs.myapp }}" = "node" ]; then
+#             dir= "my_node_app"
+#             mage= "mynodeimage"
+#           else 
+#             echo "option not selected ${{ github.event.inputs.myapp }}"
+#             exit 1
+#           fi  
 
  
-          echo "${{ github.event.inputs.myapp }}"
-          cd $dir
-          docker build -t $image .
-          cd ..
+#           echo "${{ github.event.inputs.myapp }}"
+#           cd $dir
+#           docker build -t $image .
+#           cd ..
  
-      - name: Check the Docker image
-        run: docker images
+#       - name: Check the Docker image
+#         run: docker images
