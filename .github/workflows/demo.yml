@@ -22,17 +22,17 @@ jobs:
       - name:  build docker images
         run: |
           if [ "${{ github.event.inputs.myapp }}" = "python" ]; then 
-          dir= "my_python_app"
-          image= "mypythonimage"
+            dir= "my_python_app"
+            image= "mypythonimage"
           elif [ "${{ github.event.inputs.myapp }}" = "java" ]; then
-          dir= "my_java_app"
-          image= "myjavaimage"
+            dir= "my_java_app"
+            image= "myjavaimage"
           elif [ "${{github.event.inputs.myapp }}" = "node"]; then
-          dir= "my_node_app"
-          mage= "mynodeimage"
+            dir= "my_node_app"
+            mage= "mynodeimage"
           else 
-          echo "option not selected ${{ github.event.inputs.myapp }}"
-          exit 1
+            echo "option not selected ${{ github.event.inputs.myapp }}"
+            exit 1
           fi  
 
  
