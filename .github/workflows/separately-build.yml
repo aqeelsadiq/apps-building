@@ -29,7 +29,7 @@ jobs:
           app: ${{ github.event.inputs.app }}
         run: |
           cd my_java_app
-          for i in ${app[0]}; do
+          for i in ${app[@]}; do
           docker build -t $i .
           done
       - name: check the docker image
