@@ -18,8 +18,8 @@ jobs:
     env:
       PY_DIR: python
       PY_IMAGE: python-image
-      JAVA_DIR: java
-      JAVA_IMAGE: java-image
+    #   JAVA_DIR: java
+    #   JAVA_IMAGE: java-image
       NODE_DIR: node
       NODE_IMAGE: node-image
     steps:
@@ -33,11 +33,13 @@ jobs:
         run: |
           cd my_${{ env.PY_DIR }}_app
           docker build -t ${{ env.PY_IMAGE }} .
-          cd my_${{ env.JAVA_DIR }}_app
-          docker build -t ${{ env.JAVA_IMAGE }} .
+
           cd my_${{ env.NODE_DIR }}_app
           docker build -t ${{ env.NODE_IMAGE }} .
 
 
       - name: Show Docker image
         run: docker images
+
+        #   cd my_${{ env.JAVA_DIR _app
+        #   docker build -t ${{ env.JAVA_IMAGE  .
