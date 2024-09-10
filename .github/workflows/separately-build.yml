@@ -70,7 +70,7 @@
 
 #       # - name: build the docker imag
 #       #   env:
-      #     app: ${{ github.event.inputs.app 
+ #     app: ${{ github.event.inputs.app 
 #       #   run: |
 #       #     cd my_node_app
 #       #     for i in ${app[1]}; do
