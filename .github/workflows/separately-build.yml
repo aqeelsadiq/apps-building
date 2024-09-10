@@ -35,7 +35,25 @@ jobs:
         run: docker images
 
 
-
+      - name: build the docker image
+        env:
+          app: ${{ github.event.inputs.app }}
+        run: |
+          cd my_node_app
+          for i in ${app[@]}; do
+          docker build -t $i .
+          done
+      - name: check the docker image
+        run: docker images
 
       
-
+      - name: build the docker image
+        env:
+          app: ${{ github.event.inputs.app }}
+        run: |
+          cd my_python_app
+          for i in ${app[@]}; do
+          docker build -t $i .
+          done
+      - name: check the docker image
+        run: docker images
