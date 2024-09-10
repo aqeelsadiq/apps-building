@@ -27,7 +27,7 @@ jobs:
           elif [ "${{ github.event.inputs.myapp }}" = "java" ]; then
             dir= "my_java_app"
             image= "myjavaimage"
-          elif [ "${{github.event.inputs.myapp }}" = "node"]; then
+          elif [ "${{github.event.inputs.myapp }}" = "node" ]; then
             dir= "my_node_app"
             mage= "mynodeimage"
           else 
