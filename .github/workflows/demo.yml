@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PY_DIR: python
-      PY_IMAGE: python
+      PY_IMAGE: python-image
       JAVA_DIR: java
-      JAVA_IMAGE: java
+      JAVA_IMAGE: java-image
       NODE_DIR: node
-      NODE_IMAGE: node
+      NODE_IMAGE: node-image
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
@@ -33,19 +33,19 @@ jobs:
         if: ${{ github.event.inputs.app == 'python' }}
         run: |
           cd my_${{ env.PY_DIR }}_app
-          docker build -t my-${{ env.PY_IMAGE }}-image .
+          docker build -t ${{ env.PY_IMAGE }} .
 
       - name: Build docker image for java
         if: ${{ github.event.inputs.app == 'Java' }}
         run: |
           cd my_${{ env.JAVA_DIR }}_app
-          docker build -t my-${{ env.JAVA_IMAGE }}-image .
+          docker build -t ${{ env.JAVA_IMAGE }} .
 
       - name: Build docker image for node
         if: ${{ github.event.inputs.app == 'nodejs' }}
         run: |
           cd my_${{ env.NODE_DIR }}_app
-          docker build -t my-${{ env.NODE_IMAGE }}-image .
+          docker build -t ${{ env.NODE_IMAGE }} .
 
       - name: Show Docker image
         run: docker images
