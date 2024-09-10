@@ -15,6 +15,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PY_DIR: python
+      JAVA_DIR: java
+      NODE_DIR: node
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
@@ -25,19 +29,19 @@ jobs:
       - name: Build docker image for python
         if: ${{ github.event.inputs.app == 'python' }}
         run: |
-          cd my_python_app
+          cd my_${{ env.PY_DIR }}_app
           docker build -t my-python-image .
 
       - name: Build docker image for java
         if: ${{ github.event.inputs.app == 'Java' }}
         run: |
-          cd my_java_app
+          cd my_${{ env.JAVA_DIR }}_app
           docker build -t my-java-image .
 
       - name: Build docker image for node
         if: ${{ github.event.inputs.app == 'nodejs' }}
         run: |
-          cd my_node_app
+          cd my_${{ env.NODE_DIR }}_app
           docker build -t my-nodejs-image .
 
       - name: Show Docker image
