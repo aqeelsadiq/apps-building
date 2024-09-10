@@ -24,9 +24,13 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: build the docker image
+        env:
+          app: ${{ github.event.inputs.app }}
         run: |
           cd my_java_app
-          docker build -t javaimage .
+          for i in ${app[@]}; do
+          docker build -t $i .
+          done
       - name: check the docker image
         run: docker images
 
