@@ -1,4 +1,4 @@
-name: Buil the selected application
+name: one build file
 
 on:
   workflow_dispatch:
