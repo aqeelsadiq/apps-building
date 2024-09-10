@@ -39,6 +39,7 @@ jobs:
           echo "${{ github.event.inputs.myapp }}"
           cd $dir
           docker build -t $image .
+          cd ..
  
       - name: Check the Docker image
         run: docker images
