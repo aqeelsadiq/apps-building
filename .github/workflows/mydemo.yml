@@ -28,7 +28,7 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          directories=("my_python_app" "my_java_app" "my_nodejs_app")
+          directories=("my_python_app" "my_java_app" "my_node_app")
           images=("my-python-image" "my-java-image" "my-nodejs-image")
 
           index=0
