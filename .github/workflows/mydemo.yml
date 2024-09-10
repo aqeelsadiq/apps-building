@@ -1,4 +1,4 @@
-name: Build Python, Node.js, and Java Applications Separately
+name: Build Selected Application
 
 on:
   workflow_dispatch:
@@ -15,10 +15,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [python, Java, nodejs]  
-
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
@@ -28,19 +24,25 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          directories=("my_python_app" "my_java_app" "my_node_app")
-          images=("my-python-image" "my-java-image" "my-nodejs-image")
-
-          index=0
-          if [ "${{ matrix.app }}" == "Java" ]; then
-            index=1
-          elif [ "${{ matrix.app }}" == "nodejs" ]; then
-            index=2
+          # Define directories and image names
+          if [ "${{ github.event.inputs.app }}" = "python" ]; then
+            dir="my_python_app"
+            image="my-python-image"
+          elif [ "${{ github.event.inputs.app }}" = "Java" ]; then
+            dir="my_java_app"
+            image="my-java-image"
+          elif [ "${{ github.event.inputs.app }}" = "nodejs" ]; then
+            dir="my_nodejs_app"
+            image="my-nodejs-image"
+          else
+            echo "Invalid application selected: ${{ github.event.inputs.app }}"
+            exit 1
           fi
 
-          echo "Building Docker image for ${{ matrix.app }}..."
-          cd ${directories[$index]}
-          docker build -t ${images[$index]} .
+          # Build the Docker image for the selected application
+          echo "Building Docker image for ${{ github.event.inputs.app }}..."
+          cd $dir
+          docker build -t $image .
           cd ..
 
       - name: Check the Docker images
