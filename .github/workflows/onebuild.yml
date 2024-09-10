@@ -29,23 +29,15 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build docker image for python
-        if: ${{ github.event.inputs.app == 'python' }}
+      - name: Build docker image for python, java and nodejs
         run: |
           cd my_${{ env.PY_DIR }}_app
           docker build -t my-${{ env.PY_IMAGE }}-image .
-
-      - name: Build docker image for java
-        if: ${{ github.event.inputs.app == 'Java' }}
-        run: |
           cd my_${{ env.JAVA_DIR }}_app
           docker build -t my-${{ env.JAVA_IMAGE }}-image .
-
-      - name: Build docker image for node
-        if: ${{ github.event.inputs.app == 'nodejs' }}
-        run: |
           cd my_${{ env.NODE_DIR }}_app
           docker build -t my-${{ env.NODE_IMAGE }}-image .
+
 
       - name: Show Docker image
         run: docker images
