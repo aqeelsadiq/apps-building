@@ -13,6 +13,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Login to docker
       run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Delete old docker image
+      run: docker rmi -f aqeelsadiq/mynodeimage
     - name: Build Docker image
       run: |
         cd my_node_app
