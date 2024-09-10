@@ -27,6 +27,8 @@ jobs:
         run: |
           cd my_java_app
           docker build -t javaimage .
+      - name: check the docker image
+        run: docker images
 
 
 
