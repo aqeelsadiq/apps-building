@@ -32,7 +32,7 @@ jobs:
             dir="my_java_app"
             image="my-java-image"
           elif [ "${{ github.event.inputs.app }}" = "nodejs" ]; then
-            dir="my_nodejs_app"
+            dir="my_node_app"
             image="my-nodejs-image"
           else
             echo "Invalid application selected: ${{ github.event.inputs.app }}"
