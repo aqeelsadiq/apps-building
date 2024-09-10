@@ -1,0 +1,35 @@
+name: build python, nodejs and java application separately
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'select the applicaion'
+        required: true
+        default: 'python'
+        options:
+          - python
+          - Java
+          - nodejs
+ 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: setup docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: build the docker image
+        run: |
+          cd my_java_app
+          docker build -t javaimage .
+
+
+
+
+      
+
