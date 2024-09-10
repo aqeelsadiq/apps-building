@@ -1,16 +1,16 @@
-name: print variable from one job to another job
+# name: print variable from one job to another job
 
-on:
-  push: 
-    branches:
-      - main
+# on:
+#   push: 
+#     branches:
+#       - main
 
-jobs:
-  var_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: show variable
-        run: echo ${{ vars.YOUR_NAME }}
+# jobs:
+#   var_job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: show variable
+#         run: echo ${{ vars.YOUR_NAME }}
 
 
 
