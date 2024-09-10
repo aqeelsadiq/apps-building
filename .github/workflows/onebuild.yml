@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          dir="my_${{ env.APP_DIR }}"
+          dir="${{ env.APP_DIR }}"
           image="${{ env.APP_IMAGE }}"
           echo "Build the Docker image for ${dir} and name is ${image}"
           cd $dir
