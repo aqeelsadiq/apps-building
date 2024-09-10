@@ -34,7 +34,7 @@ jobs:
             dir="my_node_app"
             image="my-nodejs-image"
           else
-            echo "Invalid application selected: ${{ github.event.inputs.app }}"
+            echo "${{ github.event.inputs.app }}"
             exit 1
           fi
 
@@ -42,5 +42,5 @@ jobs:
           cd $dir
           docker build -t $image .
 
-      - name: Check the Docker image
+      - name: show Docker image
         run: docker images
