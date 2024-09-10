@@ -1,4 +1,4 @@
-name: build apps in one job and one step
+name: one step build file
 
 on:
   workflow_dispatch:
@@ -15,14 +15,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PY_DIR: python
-      PY_IMAGE: python-image
-      JAVA_DIR: java
-      JAVA_IMAGE: java-image
-      NODE_DIR: node
-      NODE_IMAGE: node-image
-
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
@@ -32,8 +24,14 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd my_${{ env.PY_DIR }}_app
-          docker build -t ${{ env.PY_IMAGE }} .
+          app="${{ github.event.inputs.app }}"
+          dir="my_${app}_app"
+          image="my-${app}-image"
+        
+          echo "Build image $dir with image $image"
+          
+          cd $dir
+          docker build -t $image .
 
       - name: Show Docker images
         run: docker images
