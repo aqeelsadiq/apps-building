@@ -25,7 +25,7 @@
 
 #     - name: Build Docker image
 #       run: |
-#         case "${{ github.event.inputs.app }}" in
+#         case "${{ github.event.inputs.app " in
 #           python)
 #             docker build -t python-app:latest ./my_python_app
 #             ;;
