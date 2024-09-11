@@ -3,7 +3,7 @@ name: workflow file
 on:
   workflow_call:
     inputs:
-      APP:
+      MY_APP:
         required: true
         type: string
     secrets:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd my_${{ secrets.APP }}_app
+          cd my_${{ secrets.MY_APP }}_app
           docker build -t my-${{ secrets.MY_APP }}-image .
 
       - name: Show Docker images
