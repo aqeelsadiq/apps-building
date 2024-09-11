@@ -2,19 +2,19 @@ name: reuseable workflow run workflow1 file
 
 on:
   workflow_dispatch:
-    # inputs:
-    #   MY_APP:
-    #     description: 'Select the application to build'
-    #     required: true
-    #     type: choice
-    #     options:
-    #       - python
-    #       - java
-    #       - node
+    inputs:
+      MY_APP:
+        description: 'Select the application to build'
+        required: true
+        type: choice
+        options:
+          - python
+          - java
+          - node
 jobs:
   call-workflow:
       uses: ./.github/workflows/workflow-ruse.yml
-      # with:
-      #   MY_APP: ${{ secrets.MY_APP 
+      with:
+        MY_APP: ${{ github.event.inputs.MY_APP }}
       secrets:
         MY_APP: ${{ secrets.MY_APP }}
