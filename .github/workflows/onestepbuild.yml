@@ -24,11 +24,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          app=${{ github.event.inputs.app }}
-          dir=my_${app}_app
-          image=my-${app}-image   
-          cd $dir
-          docker build -t $image .
+          cd my-${{ github.event.inputs.app }}-app
+          docker build -t my-${{ github.event.inputs.app}}-image .
 
       - name: Show Docker images
         run: docker images
