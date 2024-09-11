@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd my-${{ github.event.inputs.app }}-app
+          cd my_${{ github.event.inputs.app }}_app
           docker build -t my-${{ github.event.inputs.app}}-image .
 
       - name: Show Docker images
