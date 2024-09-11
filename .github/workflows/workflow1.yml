@@ -16,3 +16,4 @@ jobs:
     uses: ./.github/workflows/workflow-ruse.yml
     with:
       APP: ${{ github.event.inputs.APP }}
+    secrets: ${{ secrets.MY_APP }}
