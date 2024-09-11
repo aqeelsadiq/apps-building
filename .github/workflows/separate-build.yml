@@ -1,9 +1,5 @@
 # name: Build Docker Images Manually and separately
 
-# on:
-#   push:
-#     branches: 
-#       - main
 
 #   workflow_dispatch:
 #     # inputs:

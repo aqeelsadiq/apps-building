@@ -1,9 +1,6 @@
 # name: print variable from one job to another job
 
-# on:
-#   push: 
-#     branches:
-#       - main
+
 
 # jobs:
 #   var_job:

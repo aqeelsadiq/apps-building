@@ -16,5 +16,4 @@ jobs:
     uses: ./.github/workflows/workflow-ruse.yml
     with:
       MY_APP: ${{ github.event.inputs.MY_APP }}
-    secrets:
-      MY_APP: ${{ secrets.MY_APP }}
+    secrets: inherit
