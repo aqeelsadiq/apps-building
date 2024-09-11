@@ -1,0 +1,10 @@
+name: reuseable workflow
+
+on:
+  workflow_call:
+
+
+jobs:
+  call-workflow:
+    uses: ./ .github/workflows/workflow.yml
+    
