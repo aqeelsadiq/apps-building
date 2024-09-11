@@ -18,4 +18,4 @@ jobs:
       with:
         MY_APP: ${{ github.event.inputs.MY_APP }}
        secrets:
-        MY_APP_SECRET: ${{ secrets.MY_APP_SECRET }}
+        MY_APP: ${{ secrets.MY_APP }}
