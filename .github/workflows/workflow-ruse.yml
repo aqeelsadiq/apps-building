@@ -2,12 +2,9 @@ name: workflow file
 
 on:
   workflow_call:
-    inputs:
-      app:
-        description: 'Select the application to build'
+    secrets:
+      MY_APP:
         required: true
-        type: string
-        default: python
 
 jobs:
   build:
@@ -21,8 +18,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd my_${{ github.event.inputs.app }}_app
-          docker build -t my-${{ github.event.inputs.app}}-image .
+          cd my_${{ secrets.MY_APP }}_app
+          docker build -t my-${{ secrets.MY_APP }}-image .
 
       - name: Show Docker images
         run: docker images
