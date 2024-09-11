@@ -25,7 +25,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd cd_${{ secrets.MY_APP_DIRS }}_app 
+          cd my_${{ secrets.MY_APP_DIRS }}_app 
           docker build -t my-${{ secrets.MY_APP_IMAGES }}-app .
 
       - name: Show Docker images
