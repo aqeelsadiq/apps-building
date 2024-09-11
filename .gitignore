@@ -1,7 +1,7 @@
-build-dep.yml
-if-else-build.yml
-if-env-build.yml
-main.yml
-onebuild.yml
-self-hosted-ec2.yml
-separate-build.yml
+.github/workflows/build-dep.yml
+.github/workflows/if-else-build.yml
+.github/workflows/if-env-build.yml
+.github/workflows/main.yml
+.github/workflows/onebuild.yml
+.github/workflows/self-hosted-ec2.yml
+.github/workflows/separate-build.yml
