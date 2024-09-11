@@ -5,6 +5,7 @@ on:
     inputs:
       APP:
         required: true
+        type: string
     secrets:
       MY_APP:
         required: true

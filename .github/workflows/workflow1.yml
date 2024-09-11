@@ -4,15 +4,15 @@ on:
   workflow_dispatch:
     inputs:
       APP:
+        description: 'Application name'
         required: true
     secrets:
       MY_APP:
         required: true
+        
 
 jobs:
   call-workflow:
     uses: ./.github/workflows/workflow-ruse.yml
     with:
       APP: ${{ github.event.inputs.APP }}
-    secrets:
-      MY_APP: ${{ secrets.MY_APP }}
