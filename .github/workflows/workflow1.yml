@@ -13,9 +13,8 @@ on:
           - node
 jobs:
   call-workflow:
-    steps:
       uses: ./.github/workflows/workflow-ruse.yml
       with:
         MY_APP: ${{ github.event.inputs.MY_APP }}
-       secrets:
+      secrets:
         MY_APP: ${{ secrets.MY_APP }}
