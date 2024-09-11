@@ -7,7 +7,7 @@ on:
         required: true
         type: string
     secrets:
-      MY_APP:
+      MY_APP_SECRET:
         required: true
 
 jobs:
@@ -22,8 +22,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd my_${{ github.event.secrets.MY_APP }}_app
-          docker build -t my-${{ github.event.secrets.MY_APP }}-image .
+          cd my_${{ inputs.MY_APP }}_app
+          docker build -t my-${{ inputs.MY_APP }}-image .
 
       - name: Show Docker images
         run: docker images
