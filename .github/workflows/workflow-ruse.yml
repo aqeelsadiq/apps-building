@@ -2,10 +2,6 @@ name: workflow file
 
 on:
   workflow_call:
-    # inputs:
-    #   MY_APP:
-    #     required: true
-    #     type: string
     secrets:
       MY_APP:
         required: true
