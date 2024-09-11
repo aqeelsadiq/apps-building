@@ -14,7 +14,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/workflow.yml
+    uses: ./.github/workflows/workflow-ruse.yml
     with:
       app: ${{ github.event.inputs.app }}
     
