@@ -1,16 +1,13 @@
 name: workflow file
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       app:
         description: 'Select the application to build'
         required: true
-        type: choice
-        options:
-          - python
-          - java
-          - node
+        type: string
+        default: python
 
 jobs:
   build:
