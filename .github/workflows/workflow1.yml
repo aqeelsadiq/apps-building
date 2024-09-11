@@ -18,10 +18,10 @@ jobs:
   call-workflow:
       uses: ./.github/workflows/workflow-ruse.yml
       with:
-        app_name: ${{ inputs.app }}
+        app_name: echo "${{ inputs.app }}""
       secrets:
-        MY_APP_DIRS: ${{ secrets.MY_APP_DIRS }}
-        MY_APP_IMAGES: ${{ secrets.MY_APP_IMAGES }}
+        MY_APP_DIRS: echo "${{ secrets.MY_APP_DIRS }}"
+        MY_APP_IMAGES: echo "${{ secrets.MY_APP_IMAGES }}"
 
 
 
