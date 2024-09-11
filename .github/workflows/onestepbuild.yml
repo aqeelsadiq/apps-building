@@ -24,11 +24,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          app="${{ github.event.inputs.app }}"
-          dir="my_${app}_app"
-          image="my-${app}-image"
+          app=${{ github.event.inputs.app }}
+          dir=my_${app}_app
+          image=my-${app}-image
         
-          echo "Build image $dir with image $image"
+          # echo "Build image $dir with image $image"
           
           cd $dir
           docker build -t $image .
