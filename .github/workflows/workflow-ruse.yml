@@ -25,8 +25,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd echo '${{ secrets.MY_APP_DIRS }}''
-          docker build -t echo '${{ secrets.MY_APP_IMAGES }}'' .
+          cd echo '${{ secrets.MY_APP_DIRS }}' >> $GITHUB_ENV
+          docker build -t echo '${{ secrets.MY_APP_IMAGES }}' >> $GITHUB_ENV .
 
       - name: Show Docker images
         run: docker images
