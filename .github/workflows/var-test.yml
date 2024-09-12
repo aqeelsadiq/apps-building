@@ -1,0 +1,14 @@
+name: secrets test
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  var_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test
+        run: |
+          echo "my name is ${{ vars.MY_NAME }}"
