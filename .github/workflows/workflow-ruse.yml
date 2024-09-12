@@ -8,7 +8,7 @@ on:
     #     required: true
     #     type: string
     secrets:
-      MY_APP:
+      APP_DIR:
         required: true
 jobs:
   build:
@@ -23,14 +23,14 @@ jobs:
 
       - name: show dir and img
         run: |
-          echo "${{ vars.MY_APP_IMAGES }}"        
-          echo "${{ secrets.MY_APP }}"
+          echo "${{ vars.APP_IMAGE }}"        
+          echo "${{ secrets.APP_DIR }}"
 
      
       - name: Build Docker image
         run: |
-          cd my_${{ secrets.MY_APP }}_app
-          docker build -t my-${{ vars.MY_APP_IMAGES }}-app .
+          cd my_${{ secrets.APP_DIR }}_app
+          docker build -t my-${{ vars.APP_IMAGE }}-app .
 
       - name: Show Docker images
         run: docker images
