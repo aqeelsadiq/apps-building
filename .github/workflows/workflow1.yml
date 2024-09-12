@@ -10,8 +10,6 @@ on:
         type: choice
         options:
           - python
-          - java
-          - node
 
 
 jobs:
@@ -19,14 +17,14 @@ jobs:
       uses: ./.github/workflows/workflow-ruse.yml
       with:
         app_name: ${{ inputs.app }}
-      secrets: inherit
-        # MY_APP: ${{ secrets.MY_APP 
+      secrets: 
+        MY_APP: ${{ secrets.MY_APP }}
 
-
+       run: echo " ${{ vars.MY_APP_IMAGES }}"
 
 
         # MY_APP_DIRS: ${{ secrets.MY_APP_DIRS }}
-        # MY_APP_IMAGES: ${{ secrets.MY_APP_IMAGES }}
+
 
 
 
