@@ -16,12 +16,6 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-
-      - name: show dir and img
-        run: |
-          echo "${{ vars.APP_IMAGE }}"        
-          echo "${{ secrets.APP_DIR }}"
-
      
       - name: Build Docker image
         run: |
