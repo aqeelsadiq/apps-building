@@ -1,4 +1,4 @@
-name: set the output one step to another step
+name: set the step output
 
 on:
   workflow_dispatch:

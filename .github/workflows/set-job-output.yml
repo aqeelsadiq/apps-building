@@ -16,6 +16,8 @@ jobs:
         id: set-output
         run: |
             echo "name=aqeel" >> $GITHUB_OUTPUT
+      - name: access outut
+        run: ${{ steps.set-output.outputs.name }}
 
   job2:
     runs-on: ubuntu-latest
