@@ -23,8 +23,9 @@ jobs:
 
       - name: show dir and img
         run: |
+          echo "${{ vars.MY_APP_IMAGES }}"        
           echo "${{ secrets.MY_APP }}"
-          echo "${{ vars.MY_APP_IMAGES }}"
+
      
       - name: Build Docker image
         run: |
