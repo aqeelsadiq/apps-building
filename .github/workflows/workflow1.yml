@@ -2,15 +2,6 @@ name: reuseable workflow run workflow1 file
 
 on:
   workflow_dispatch:
-    # inputs:
-    #   app:
-    #     description: 'Select the app to build '
-    #     required: true
-    #     default: 'python'
-    #     type: choice
-    #     options:
-    #       - python
-         
 
 jobs:
   call-workflow:

@@ -2,11 +2,7 @@ name: workflow file
 
 on:
   workflow_call:
-    # inputs:
-    #   app_name:
-    #     description: 'The app name to build the Docker image for'
-    #     required: true
-    #     type: string
+
     secrets:
       APP_DIR:
         required: true
