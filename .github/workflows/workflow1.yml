@@ -18,7 +18,7 @@ jobs:
   call-workflow:
       uses: ./.github/workflows/workflow-ruse.yml
       with:
-        app: ${{ inputs.app }}
+        app_name: ${{ inputs.app }}
       secrets:
         MY_APP: ${{ secrets.MY_APP }}
 
