@@ -24,4 +24,4 @@ jobs:
         run: |
             echo "My age is ${{ steps.set-output.outputs.age }}"
             echo "My name is ${{ steps.set-output.outputs.name }}"
-            echo "My profession is  ${{ steps.set-output1.outputs.name }}"
+            echo "My profession is  ${{ steps.set-output1.outputs.profession }}"
