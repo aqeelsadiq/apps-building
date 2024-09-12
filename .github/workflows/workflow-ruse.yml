@@ -8,10 +8,18 @@ on:
         required: true
         type: string
     secrets:
-      MY_APP_DIRS:
+      MY_APP:
         required: true
-      MY_APP_IMAGES:
-        required: true
+
+
+
+
+
+
+      # MY_APP_DIRS:
+      #   required: true
+      # MY_APP_IMAGES:
+      #   required: true
 
 jobs:
   build:
@@ -25,8 +33,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd my_${{ secrets.MY_APP_DIRS }}_app
-          docker build -t my-${{ secrets.MY_APP_IMAGES }}-app .
+          cd my_${{ secrets.MY_APP }}_app
+          docker build -t my-${{ secrets.MY_APP }}-app .
 
       - name: Show Docker images
         run: docker images
