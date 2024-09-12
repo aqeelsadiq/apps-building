@@ -2,21 +2,21 @@ name: reuseable workflow run workflow1 file
 
 on:
   workflow_dispatch:
-    inputs:
-      app:
-        description: 'Select the app to build '
-        required: true
-        default: 'python'
-        type: choice
-        options:
-          - python
-
+    # inputs:
+    #   app:
+    #     description: 'Select the app to build '
+    #     required: true
+    #     default: 'python'
+    #     type: choice
+    #     options:
+    #       - python
+         
 
 jobs:
   call-workflow:
       uses: ./.github/workflows/workflow-ruse.yml
       with:
-        app_name: ${{ inputs.app }}
+        app_name: ${{ vars.MY_APP_IMAGES }}
       secrets: 
         MY_APP: ${{ secrets.MY_APP }}
 

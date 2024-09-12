@@ -22,11 +22,6 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: show secret and var
-        run: |
-          echo ${{ secrets.MY_APP }}
-          echo ${{ vars.MY_APP_IMAGES }}
-
       - name: Build Docker image
         run: |
           cd my_${{ secrets.MY_APP }}_app
