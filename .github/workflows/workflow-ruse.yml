@@ -10,8 +10,6 @@ on:
     secrets:
       MY_APP:
         required: true
-env:
-  MY_APP_IMAGES: "python"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,12 +24,12 @@ jobs:
       - name: show dir and img
         run: |
           echo "${{ secrets.MY_APP }}"
-          echo "${{ env.MY_APP_IMAGES }}"
+          echo "${{ vars.MY_APP_IMAGES }}"
      
       - name: Build Docker image
         run: |
           cd my_${{ secrets.MY_APP }}_app
-          docker build -t my-${{ env.MY_APP_IMAGES }}-app .
+          docker build -t my-${{ vars.MY_APP_IMAGES }}-app .
 
       - name: Show Docker images
         run: docker images
