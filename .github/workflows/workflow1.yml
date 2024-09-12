@@ -16,7 +16,7 @@ jobs:
   call-workflow:
       uses: ./.github/workflows/workflow-ruse.yml
       with:
-        app_name: ${{ vars.MY_APP_IMAGES }}
+        MY_APP_IMAGES: ${{ vars.MY_APP_IMAGES }}
       secrets: 
         MY_APP: ${{ secrets.MY_APP }}
 

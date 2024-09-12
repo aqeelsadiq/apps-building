@@ -2,11 +2,11 @@ name: workflow file
 
 on:
   workflow_call:
-    inputs:
-      app_name:
-        description: 'The app name to build the Docker image for'
-        required: true
-        type: string
+    # inputs:
+    #   app_name:
+    #     description: 'The app name to build the Docker image for'
+    #     required: true
+    #     type: string
     secrets:
       MY_APP:
         required: true
@@ -25,7 +25,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd my_${{ secrets.MY_APP }}_app
-          docker build -t my-${{ inputs.MY_APP_IMAGES }}-app .
+          docker build -t my-${{ vars.MY_APP_IMAGES }}-app .
 
       - name: Show Docker images
         run: docker images
