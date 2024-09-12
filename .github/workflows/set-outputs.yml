@@ -15,9 +15,13 @@ jobs:
             echo "age=24" >> $GITHUB_OUTPUT
             echo "name=Aqeel" >> $GITHUB_OUTPUT
 
+      - name: set output2
+        id: set-output1
+        run: |
+            echo "Profession=SE" >> $GITHUB_OUTPUT      
 
       - name: Access output
         run: |
             echo "My age is ${{ steps.set-output.outputs.age }}"
             echo "My name is ${{ steps.set-output.outputs.name }}"
-
+            echo "My profession is  ${{ steps.set-output1.outputs.name }}"
