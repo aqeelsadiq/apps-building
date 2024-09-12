@@ -1,0 +1,20 @@
+name: set the output
+
+on:
+  workflow_dispatch:
+
+
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set output
+        id: set-output
+        run: echo "age=24" >> $GITHUB_OUTPUT
+
+      - name: Access output
+        run: echo ${{ steps.set-output.outputs.age }}
+
+
+        
