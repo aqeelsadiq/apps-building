@@ -1,0 +1,25 @@
+name: set the job output from one job to another
+
+on:
+  workflow_dispatch:
+
+
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+        job1_name: ${{ steps.set-output.outputs.name }}
+
+    steps:
+      - name: set output
+        id: set-output
+        run: |
+            echo "name=aqeel" >> $GITHUB_OUTPUT
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: get output
+        run: echo "my name is ${{ needs.job1.outputs.job1_name }}"
