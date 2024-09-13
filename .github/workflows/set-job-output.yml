@@ -1,4 +1,4 @@
-name: set the job output from one job to another
+name: set the job output 
 
 on:
   workflow_dispatch:
