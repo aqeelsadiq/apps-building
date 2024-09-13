@@ -1,0 +1,19 @@
+name: matrix test
+
+on: 
+  workflow_dispatch:
+
+
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [18, 20]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Display matrix and index
+        run: |
+          echo "Running on ${{ matrix.os }} with Node.js ${{ matrix.node }}"
+          echo "This is matrix job ${{ strategy.job-index }}"
