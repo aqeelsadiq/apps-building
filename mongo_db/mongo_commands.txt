@@ -1,26 +1,8 @@
-# build  docker image from dockerfile
-
 1- docker build -t mongo .
-
-# run container
-
 2- docker run -it -d -p 27017:27017 --name mongo-container mongo
-
-# container is runnning and you can go inside the container 
-
 3- docker exec -it mongo-container bash
-
-# you are now inside the container and go to the mongosh
-
-
 4- mongosh -u sardar -p
-
-#  create database
-
 5- use mydb
-
-# show the database
-
 6- show dbs (if database doesnot exist then run the following command)
 
 # Your created database (mydb) is not present in list. To display database, you need to insert at least one document into it.

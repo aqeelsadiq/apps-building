@@ -10,20 +10,21 @@ REG_TOKEN=$(curl -X POST -H "Authorization: token ${ACCESS_TOKEN}" -H "Accept: a
 
 echo "REG_TOKEN: ${REG_TOKEN}"
 
-if [ -z "$REG_TOKEN" ]; then
-    echo "Failed to retrieve registration token. Exiting."
-    exit 1
-fi
 cd /home/docker/actions-runner
 
 ./config.sh --url https://github.com/${REPOSITORY} --token ${REG_TOKEN}
 
+# ./svc.sh install
+
+# ./svc.sh start
+
 cleanup() {
-    echo "Removing runner..."
+    echo "Removing runner"
     ./config.sh remove --unattended --token ${REG_TOKEN}
 }
 
 trap 'cleanup; exit 130' INT
 trap 'cleanup; exit 143' TERM
 
+# tail -f /dev/null
 ./run.sh & wait $!
