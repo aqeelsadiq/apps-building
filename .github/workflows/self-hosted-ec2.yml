@@ -1,32 +1,33 @@
 name: build and deploy aaplication on aws ec2
 
-
+on:
+  workflow_dispatch:
 
 jobs: 
   build:
-   runs-on: ubuntu-latest
-   steps: 
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Login to docker
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-    - name: Delete old docker image
-      run: docker rmi -f aqeelsadiq/mynodeimage
-    - name: Build Docker image
-      run: |
-        cd my_node_app
-        docker build -t aqeelsadiq/mynodeimage .
-    - name: Push image to docker hub
-      run: docker push aqeelsadiq/mynodeimage:latest
+    runs-on: ubuntu-latest
+    steps: 
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Login to docker
+          run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        - name: Delete old docker image
+          run: docker rmi -f aqeelsadiq/mynodeimage
+        - name: Build Docker image
+          run: |
+            cd my_java_app
+            docker build -t aqeelsadiq/myjavaimage .
+        - name: Push image to docker hub
+          run: docker push aqeelsadiq/myjavaimage:latest
 
-#   Deploy:
-#     needs: build
-#     runs-on: self-hosted
-#     steps:
-#       - name: Pull docker images
-#         run: docker pull aqeelsadiq/mynodeimage:latest
-#       - name: Delete old container
-#         run: docker rm -f node-container
-#       - name: Run docker container
-#         run: docker run -it -d -p 3000:3000 --name node-container aqeelsadiq/mynodeimage:latest 
+  # Deploy:
+  #   needs: build
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: Pull docker images
+  #       run: docker pull aqeelsadiq/mynodeimage:latest
+  #     - name: Delete old container
+  #       run: docker rm -f node-container
+  #     - name: Run docker container
+  #       run: docker run -it -d -p 3000:3000 --name node-container aqeelsadiq/mynodeimage:latest 
 
