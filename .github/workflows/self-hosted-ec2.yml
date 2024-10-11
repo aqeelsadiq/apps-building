@@ -1,23 +1,23 @@
-# name: build and deploy aaplication on aws ec2 changes
+name: build and deploy aaplication on aws ec2 changes
 
 
 
-# jobs: 
-#   build:
-#    runs-on: ubuntu-latest
-#    steps: 
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-#     - name: Login to docker
-#       run: docker login -u ${{ secrets.DOCKER_USERNAME  -p ${{ secrets.DOCKER_PASSWORD 
-#     - name: Delete old docker image
-#       run: docker rmi -f aqeelsadiq/mynodeimage
-#     - name: Build Docker image
-#       run: |
-#         cd my_node_app
-#         docker build -t aqeelsadiq/mynodeimage .
-#     - name: Push image to docker hub
-#       run: docker push aqeelsadiq/mynodeimage:latest
+jobs: 
+  build:
+   runs-on: ubuntu-latest
+   steps: 
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Login to docker
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Delete old docker image
+      run: docker rmi -f aqeelsadiq/mynodeimage
+    - name: Build Docker image
+      run: |
+        cd my_node_app
+        docker build -t aqeelsadiq/mynodeimage .
+    - name: Push image to docker hub
+      run: docker push aqeelsadiq/mynodeimage:latest
 
 #   Deploy:
 #     needs: build
